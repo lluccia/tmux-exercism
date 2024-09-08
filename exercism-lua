@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+track=lua
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file=${exercise}.lua
+export _exercism_test_file=${exercise}_spec.lua
+export _exercism_run_tests_command='busted'
+
+bash "$script_dir/exercism-template" $track "$exercise"

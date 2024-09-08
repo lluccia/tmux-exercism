@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+track=jq
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file='*.jq'
+export _exercism_test_file='*.bats'
+export _exercism_run_tests_command="bats ${_exercism_test_file}"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+
+

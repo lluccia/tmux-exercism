@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+track=powershell
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file='*.ps1'
+export _exercism_test_file='' #included as solution file. naming pattern was tricky to filter.
+export _exercism_run_tests_command='pwsh -Command Invoke-Pester'
+
+bash "$script_dir/exercism-template" $track "$exercise"

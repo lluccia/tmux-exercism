@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+die() {
+    echo $1 >&2
+    exit 1
+}
+
+track=$1
+
+[[ $# -eq 2 ]] || die "usage: exercism-${1} <exercise name>"
+
+exercise=$2
+
+byobu has-session -t exercism-$track-$exercise
+if [ $? != 0 ]
+then
+    exercise_path=~/exercism/$track/$exercise
+
+    [[ -d $exercise_path ]] || exercism download --exercise=$exercise --track=$track
+
+    byobu new-session -s exercism-$track-$exercise -n $exercise -d
+
+    byobu send-keys -t exercism-$track-$exercise "cd $exercise_path" C-m
+    byobu send-keys -t exercism-$track-$exercise "nvim -o ${_exercism_solution_file} ${_exercism_test_file}" C-m
+
+    byobu split-window -t exercism-$track-$exercise -v
+    byobu select-layout -t exercism-$track-$exercise main-vertical
+    byobu resize-pane -t exercism-$track-$exercise -L 10
+    
+    byobu send-keys -t exercism-$track-$exercise "cd $exercise_path" C-m
+    byobu send-keys -t exercism-$track-$exercise "while sleep 1; do ls ${_exercism_solution_file} ${_exercism_test_file} | entr -s '{ clear; ${_exercism_run_tests_command}; }'; done" C-m
+
+    byobu select-pane -t exercism-$track-$exercise:1.1
+fi
+byobu attach -t exercism-$track-$exercise
