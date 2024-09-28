@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+track=rust
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file='src/*.rs'
+export _exercism_test_file='tests/*.rs'
+export _exercism_run_tests_command="cargo test"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+
+
