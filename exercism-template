@@ -28,7 +28,8 @@ then
     byobu resize-pane -t exercism-$track-$exercise -L 10
     
     byobu send-keys -t exercism-$track-$exercise "cd $exercise_path" C-m
-    byobu send-keys -t exercism-$track-$exercise "while sleep 1; do ls ${_exercism_solution_file} ${_exercism_test_file} | entr -s '{ clear; ${_exercism_run_tests_command}; }'; done" C-m
+    byobu send-keys -t exercism-$track-$exercise "while sleep 1; do ls ${_exercism_solution_file} ${_exercism_test_file} | "
+    byobu send-keys -t exercism-$track-$exercise "entr -s -c '{ ${_exercism_run_tests_command} | head -n $(( $LINES - 4 ))}'; done" C-m
 
     byobu select-pane -t exercism-$track-$exercise:1.1
 fi
