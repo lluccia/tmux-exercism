@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+track=cpp
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+exercise_path=~/exercism/$track/$exercise
+
+[[ -d $exercise_path ]] || exercism download --exercise=$exercise --track=$track
+
+[[ -d $exercise_path/build ]] ||  {
+    mkdir $exercise_path/build;
+    cd $exercise_path/build && cmake -G "Unix Makefiles" ..
+}
+
+export _exercism_solution_file=${exercise//-/_}.cpp
+export _exercism_test_file=${exercise//-/_}_test.cpp
+export _exercism_run_tests_command='cd build; script -qfc make /dev/null' #script command used for colored output when piped
+
+bash "$script_dir/exercism-template" $track "$exercise"
