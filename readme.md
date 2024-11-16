@@ -15,6 +15,7 @@ Bash scripts to download exercises from [exercism.io](https://exercism.io) and s
   - **jq**: bats
   - **lua**: lua, busted
   - **powershell**: pwsh
+  - **python**: pytest
 
 ## usage
 
