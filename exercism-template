@@ -25,7 +25,7 @@ then
 
     byobu split-window -t exercism-$track-$exercise -v
     byobu select-layout -t exercism-$track-$exercise main-vertical
-    byobu resize-pane -t exercism-$track-$exercise -L 10
+    byobu resize-pane -t exercism-$track-$exercise -L 20
     
     byobu send-keys -t exercism-$track-$exercise "cd $exercise_path" C-m
     byobu send-keys -t exercism-$track-$exercise "while sleep 1; do ls ${_exercism_solution_file} ${_exercism_test_file} | "
