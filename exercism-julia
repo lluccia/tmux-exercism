@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+track=julia
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file=${exercise}.jl
+export _exercism_test_file=runtests.jl
+export _exercism_run_tests_command="julia ${_exercism_test_file}"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+
