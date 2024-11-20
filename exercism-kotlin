@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-track=java
+track=kotlin
 exercise=$1
 
 script_dir=$(dirname "$0")
 
-export _exercism_solution_file='src/main/java/*.java'
-export _exercism_test_file='src/test/java/*.java'
+export _exercism_solution_file='src/main/kotlin/*.kt'
+export _exercism_test_file='src/test/kotlin/*.kt'
 export _exercism_run_tests_command="sh gradlew test"
 
 bash "$script_dir/exercism-template" $track "$exercise"
