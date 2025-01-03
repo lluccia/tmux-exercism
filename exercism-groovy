@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+track=groovy
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file='src/main/groovy/*.groovy'
+export _exercism_test_file='src/test/groovy/*.groovy'
+export _exercism_run_tests_command="sh gradlew test"
+
+export _exercism_before_tests_command="sdk use java 11.0.22-tem"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+

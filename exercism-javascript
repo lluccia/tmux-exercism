@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+track=javascript
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file=${exercise}.js
+export _exercism_test_file=${exercise}.spec.js
+export _exercism_run_tests_command="npm run test"
+
+export _exercism_run_after_download="npm install"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+

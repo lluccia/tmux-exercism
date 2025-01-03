@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+track=go
+exercise=$1
+
+script_dir=$(dirname "$0")
+
+export _exercism_solution_file=${exercise//-/_}.go
+export _exercism_test_file=${exercise//-/_}_test.go
+export _exercism_run_tests_command="go test"
+
+bash "$script_dir/exercism-template" $track "$exercise"
+

@@ -21,6 +21,10 @@ then
     byobu new-session -s exercism-$track-$exercise -n $exercise -d
 
     byobu send-keys -t exercism-$track-$exercise "cd $exercise_path" C-m
+
+    [[ $_exercism_run_after_download ]] &&
+        byobu send-keys -t exercism-$track-$exercise "${_exercism_run_after_download}" C-m
+
     byobu send-keys -t exercism-$track-$exercise "nvim -o ${_exercism_solution_file} ${_exercism_test_file}" C-m
 
     byobu split-window -t exercism-$track-$exercise -v
